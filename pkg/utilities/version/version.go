@@ -71,8 +71,11 @@ func LessThan(v1, v2 string) (bool, error) {
 }
 
 func parseVersion(v string) (int, int, int, error) {
-	chunks := strings.Split(v[1:], ".") // drop "v" at front
-	if len(chunks) != 3 {               // major.minor.patch
+	if strings.HasPrefix(v, "v") {
+		v = v[1:]
+	}
+	chunks := strings.Split(v, ".") // drop "v" at front
+	if len(chunks) != 3 {           // major.minor.patch
 		return -1, -1, -1, fmt.Errorf("Invalid kubernetes version: %s", v)
 	}
 	var results = []int{-1, -1, -1}
