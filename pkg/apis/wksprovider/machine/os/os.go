@@ -277,9 +277,12 @@ func (o OS) CreateSeedNodeSetupPlan(params SeedNodeParams) (*plan.Plan, error) {
 	b.AddResource("kubeadm:init", kubeadmInitResource, plan.DependOn("install:k8s"))
 
 	// TODO(damien): Add a CNI section in cluster.yaml once we support more than one CNI plugin.
-	const cni = "weave-net"
+	const (
+		cni = "weave-net"
+	)
 
 	cniAdddon := baremetalspecv1.Addon{Name: cni}
+
 	manifests, err := buildAddon(cniAdddon, params.ImageRepository, params.ClusterManifestPath, params.Namespace)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to generate manifests for CNI plugin")
