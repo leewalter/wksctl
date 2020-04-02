@@ -7,7 +7,7 @@ items:
       name: weave-net
       labels:
         name: weave-net
-      namespace: kube-system
+      namespace: weavek8sops
   - apiVersion: rbac.authorization.k8s.io/v1
     kind: ClusterRole
     metadata:
@@ -61,12 +61,12 @@ items:
     subjects:
       - kind: ServiceAccount
         name: weave-net
-        namespace: kube-system
+        namespace: weavek8sops
   - apiVersion: rbac.authorization.k8s.io/v1
     kind: Role
     metadata:
       name: weave-net
-      namespace: kube-system
+      namespace: weavek8sops
       labels:
         name: weave-net
     rules:
@@ -89,7 +89,7 @@ items:
     kind: RoleBinding
     metadata:
       name: weave-net
-      namespace: kube-system
+      namespace: weavek8sops
       labels:
         name: weave-net
     roleRef:
@@ -99,14 +99,14 @@ items:
     subjects:
       - kind: ServiceAccount
         name: weave-net
-        namespace: kube-system
+        namespace: weavek8sops
   - apiVersion: apps/v1
     kind: DaemonSet
     metadata:
       name: weave-net
       labels:
         name: weave-net
-      namespace: kube-system
+      namespace: weavek8sops
     spec:
       # Wait 5 seconds to let pod connect before rolling next pod
       selector:
