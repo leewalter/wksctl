@@ -165,7 +165,7 @@ items:
                       fieldPath: spec.nodeName
               image: 'docker.io/weaveworks/weave-npc:2.5.1'
               imagePullPolicy: Always
-#npc-args
+# npc-args
               resources:
                 requests:
                   cpu: 50m
@@ -210,6 +210,6 @@ items:
               hostPath:
                 path: /run/xtables.lock
                 type: FileOrCreate
-          priorityClassName: system-node-critical
+          # priorityClassName: system-node-critical
       updateStrategy:
         type: RollingUpdate
